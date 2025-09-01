@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ডায়মন্ড টপ-আপ ওয়েবসাইট</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f0f2f5; text-align: center; padding: 50px 10px; }
+  .container { background: white; padding: 30px; border-radius: 10px; max-width: 450px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  input, select, button { padding: 10px; margin: 10px 0; width: 100%; border-radius: 5px; border: 1px solid #ccc; }
+  button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+  button:hover { background: #45a049; }
+  #status { margin-top: 20px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>ডায়মন্ড টপ-আপ সার্ভিস</h2>
+
+<form id="topup-form">
+  <input type="text" id="userId" placeholder="আপনার UID / আইডি" required>
+
+  <select id="product" required>
+    <option value="">ডায়মন্ড প্যাক নির্বাচন করুন</option>
+    <option value="25💎 - 25tk">25💎 ✅ 25 tk</option>
+    <option value="50💎 - 45tk">50💎 ✅ 45 tk</option>
+    <option value="115💎 - 80tk">115💎 ✅ 80 tk</option>
+    <option value="240💎 - 160tk">240💎 ✅ 160 tk</option>
+    <option value="355💎 - 240tk">355💎 ✅ 240 tk</option>
+    <option value="480💎 - 320tk">480💎 ✅ 320 tk</option>
+    <option value="505💎 - 340tk">505💎 ✅ 340 tk</option>
+    <option value="610💎 - 400tk">610💎 ✅ 400 tk</option>
+    <option value="850💎 - 560tk">850💎 ✅ 560 tk</option>
+    <option value="1090💎 - 720tk">1090💎 ✅ 720 tk</option>
+    <option value="1240💎 - 790tk">1240💎 ✅ 790 tk</option>
+    <option value="2090💎 - 1350tk">2090💎 ✅ 1350 tk</option>
+    <option value="2530💎 - 1580tk">2530💎 ✅ 1580 tk</option>
+    <option value="5060💎 - 3160tk">5060💎 ✅ 3160 tk</option>
+    <option value="ID কোড মাসিক - 780tk (2500💎)">✅ আইডি কোড মাসিক = 780tk (2500💎)</option>
+    <option value="ID কোড সাপ্তাহিক - 160tk (445💎)">✅ আইডি কোড সাপ্তাহিক = 160tk (445💎)</option>
+    <option value="ID কোড সাপ্তাহিক লাইট - 50tk (90💎)">✅ আইডি কোড সাপ্তাহিক লাইট = 50tk (90💎)</option>
+  </select>
+
+  <input type="text" id="bkashNumber" placeholder="আপনার Bkash নাম্বার" value="01776651111" required>
+  <input type="text" id="trxId" placeholder="Transaction ID" required>
+
+  <button type="submit">অর্ডার পাঠান</button>
+</form>
+
+<p id="status"></p>
+<p>ONLY UID TOPUP - INSTANT DELIVERY</p>
+</div>
+
+<script>
+document.getElementById("topup-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const userId = document.getElementById("userId").value.trim();
+  const product = document.getElementById("product").value;
+  const bkashNumber = document.getElementById("bkashNumber").value.trim();
+  const trxId = document.getElementById("trxId").value.trim();
+
+  if(userId === "" || product === "" || bkashNumber === "" || trxId === "") {
+    document.getElementById("status").style.color = "red";
+    document.getElementById("status").textContent = "সব ফিল্ড পূরণ করুন!";
+    return;
+  }
+
+  // WhatsApp লিংক তৈরি (ফিক্সড আপনার নাম্বার)
+  const phone = "01569114870";
+  const message = encodeURIComponent(
+    `নতুন অর্ডার!\nUID/আইডি: ${userId}\nপ্যাকেজ: ${product}\nBkash নাম্বার: ${bkashNumber}\nTransaction ID: ${trxId}`
+  );
+  const waLink = `https://wa.me/${phone}?text=${message}`;
+
+  // WhatsApp খুলুন নতুন ট্যাবে
+  window.open(waLink, "_blank");
+
+  document.getElementById("status").style.color = "green";
+  document.getElementById("status").textContent = "WhatsApp মেসেজ পাঠানোর জন্য নতুন ট্যাব খুলেছে।";
+});
+</script>
+
+</body>
+</html>
